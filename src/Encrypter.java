@@ -34,9 +34,16 @@ public class Encrypter {
      */
     public void encrypt(String inputFilePath, String encryptedFilePath) throws Exception {
         //TODO: Call the read method, encrypt the file contents, and then write to new file
+    	String words = readFile(inputFilePath);
+    	String encryptedwords = outputFilePath(words, shift);
+    	writeFile(encryptedwords, encryptedFilePath);
     }
 
-    /**
+    private String outputFilePath(String words, int shift2) {
+		return null;
+	}
+
+	/**
      * Decrypts the content of an encrypted file and writes the result to another file.
      *
      * @param messageFilePath    the path to the file containing the encrypted text
@@ -45,6 +52,9 @@ public class Encrypter {
      */
     public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception {
         //TODO: Call the read method, decrypt the file contents, and then write to new file
+    	String encryptwords = readFile(messageFilePath);
+    	String decryptwords = outputFilePath(encryptwords, shift);
+    	writeFile(decryptwords, decryptedFilePath);
     }
 
     /**
@@ -56,7 +66,11 @@ public class Encrypter {
      */
     private static String readFile(String filePath) throws Exception {
         String message = "";
-        //TODO: Read file from filePath
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNextLine()) {
+            }
+        } catch (IOException e) {
+        }
         return message;
     }
 
@@ -68,6 +82,11 @@ public class Encrypter {
      */
     private static void writeFile(String data, String filePath) {
         //TODO: Write to filePath
+    	try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(data);
+        } catch (IOException e) {
+            
+        }
     }
 
     /**
